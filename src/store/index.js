@@ -4,11 +4,14 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        report: [],
+        report: {},
     },
     getters: {
-        reports(state) {
-            return state.report;
+        records(state) {
+            return state.report.records;
+        },
+        xaxis(state) {
+            return state.report.xaxis;
         },
     },
     mutations: {
@@ -19,7 +22,7 @@ const store = new Vuex.Store({
     actions: {
         getReportingData: (context) => {
             const data = require("../assets/report.json");
-            context.commit("reporting", data.records);
+            context.commit("reporting", data);
         },
     },
 });

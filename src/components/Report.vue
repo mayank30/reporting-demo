@@ -63,14 +63,14 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["reports"]),
+    ...mapGetters(["records", "xaxis"]),
   },
   methods: {
     ...mapActions(["getReportingData"]),
     onMetricChange() {
-      this.chartData = [["Date", this.metric.value]];
-      this.reports.forEach((x) => {
-        const rec = [x["date"], x[this.metric.key]];
+      this.chartData = [[this.xaxis, this.metric.value]];
+      this.records.forEach((x) => {
+        const rec = [x[this.xaxis], x[this.metric.key]];
         this.chartData.push(rec);
       });
     },
